@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import logoImg from "./assets/logo.png";
 
 const SUGGESTIONS = [
   "What's your refund policy?",
@@ -64,7 +65,7 @@ export default function App() {
     <div className="app">
       <header className="header">
         <div className="brand">
-          <img src="/logo.png" alt="PlanitShop Logo" className="brand-logo" />
+          <img src={logoImg} alt="PlanitShop Logo" className="brand-logo" />
           <div>
             <h1>PlanitShop</h1>
             <p className="tagline">Customer Support · PlanitBot</p>
