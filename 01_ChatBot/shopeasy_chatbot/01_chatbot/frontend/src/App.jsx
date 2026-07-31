@@ -8,7 +8,7 @@ const SUGGESTIONS = [
   "Can I return a hoodie after 35 days?",
 ];
 
-const API_BASE = ""; // proxied by Vite to :8201
+const API_BASE = import.meta.env.VITE_API_BASE_URL || (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? "" : "https://planitshop-chatbot.onrender.com");
 
 export default function App() {
   const [messages, setMessages] = useState([
