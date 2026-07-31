@@ -183,5 +183,17 @@ def read_root():
     return HTMLResponse("<h1>PlanitShop Chatbot API Running</h1><p>Visit /health</p>")
 
 
+@app.get("/logo.png")
+@app.get("/chatbot/logo.png")
+def get_logo():
+    logo_path = os.path.join(_static_dir, "logo.png")
+    if not os.path.exists(logo_path):
+        logo_path = os.path.join(os.path.dirname(__file__), "..", "frontend", "public", "logo.png")
+    if os.path.exists(logo_path):
+        return FileResponse(logo_path, media_type="image/png")
+    raise HTTPException(status_code=404, detail="Logo not found")
+
+
+
 
 
