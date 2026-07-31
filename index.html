@@ -250,7 +250,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="brand">
-          <img src="./logo.png" onError={(e) => { e.target.src = "logo.png"; }} alt="PlanitShop Logo" className="brand-logo" />
+          <img src="./logo.png" onError={(e) => { if (!e.target.dataset.tried) { e.target.dataset.tried = "1"; e.target.src = "/logo.png"; } else if (e.target.dataset.tried === "1") { e.target.dataset.tried = "2"; e.target.src = "/chatbot/logo.png"; } }} alt="PlanitShop Logo" className="brand-logo" />
           <div>
             <h1>PlanitShop</h1>
             <p className="tagline">Customer Support · PlanitBot</p>
