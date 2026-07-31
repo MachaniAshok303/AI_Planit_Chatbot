@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PlanitShop — Support Chat</title>
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/png" href="./logo.png" />
     <style>
 * { box-sizing: border-box; }
 :root {
@@ -250,7 +250,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="brand">
-          <img src="/logo.png" alt="PlanitShop Logo" className="brand-logo" />
+          <img src="./logo.png" onError={(e) => { e.target.src = "logo.png"; }} alt="PlanitShop Logo" className="brand-logo" />
           <div>
             <h1>PlanitShop</h1>
             <p className="tagline">Customer Support · PlanitBot</p>
