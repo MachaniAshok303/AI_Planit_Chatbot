@@ -22,6 +22,7 @@ import db
 
 AMPLIFY_MODEL = os.getenv("CHATBOT_MODEL", os.getenv("AMPLIFY_MODEL", os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")))
 AMPLIFY_API_KEY = os.getenv("AMPLIFY_API_KEY", "") or os.getenv("Amplify_API_KEY", "") or os.getenv("GROQ_API_KEY", "") or os.getenv("GROQ_API_Key", "") or os.getenv("GROQ_Judge_API_Key", "")
+AMPLIFY_API_URL = os.getenv("AMPLIFY_API_URL", "").strip()
 
 
 SYSTEM_PROMPT = """You are PlanitBot, the customer support assistant for PlanitShop — a mid-sized e-commerce store that sells electronics, apparel, and home goods.
@@ -129,7 +130,10 @@ def chat(req: ChatRequest):
             mode="mock",
         )
 
-    client = Groq(api_key=AMPLIFY_API_KEY)
+    client_kwargs = {"api_key": AMPLIFY_API_KEY}
+    if AMPLIFY_API_URL:
+        client_kwargs["base_url"] = AMPLIFY_API_URL
+    client = Groq(**client_kwargs)
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     for m in req.history or []:
         messages.append({"role": m.role, "content": m.content})
